@@ -430,6 +430,7 @@ public class ArticleProcessor {
         final String tagTitle = context.pathVar("tagTitle");
         final int currentPageNum = Paginator.getPage(request);
         Stopwatchs.start("Get Tag-Articles Paged [tagTitle=" + tagTitle + ", pageNum=" + currentPageNum + ']');
+
         try {
             jsonObject.put(Keys.STATUS_CODE, true);
 
@@ -444,6 +445,7 @@ public class ArticleProcessor {
             final JSONObject tag = tagQueryResult.getJSONObject(Tag.TAG);
             final String tagId = tag.getString(Keys.OBJECT_ID);
             final JSONObject tagArticleResult = articleQueryService.getArticlesByTag(tagId, currentPageNum, pageSize);
+
             if (null == tagArticleResult) {
                 throw new Exception("Can not found tag [title=" + tagTitle + "]'s articles");
             }
@@ -458,10 +460,12 @@ public class ArticleProcessor {
             result.put(Pagination.PAGINATION, pagination);
             result.put(Article.ARTICLES, articles);
             jsonObject.put(Keys.RESULTS, result);
-        } catch (final Exception e) {
+        }
+        catch (final Exception e) {
             jsonObject.put(Keys.STATUS_CODE, false);
             LOGGER.log(Level.ERROR, "Gets article paged failed", e);
-        } finally {
+        }
+        finally {
             Stopwatchs.end();
         }
 
