@@ -91,17 +91,7 @@ public class Utils {
             return ret;
         }
 
-        String id = "";
-
-        if(null == elems.get("id")) {
-            id = null;
-        }
-        else if(elems.get("id") instanceof Integer) {
-            id = (Integer) elems.get("id") + "";
-        }
-        else {
-            id = (String) elems.get("id");
-        }
+        String id = parseId(elems, logger);
 
         if (!StringUtils.isBlank(id)) {
             ret.put(Keys.OBJECT_ID, id);
@@ -141,9 +131,53 @@ public class Utils {
 
         ret.put(Article.ARTICLE_STATUS, Article.ARTICLE_STATUS_C_PUBLISHED);
         ret.put(Article.ARTICLE_COMMENTABLE, true);
-        ret.put(Article.ARTICLE_VIEW_PWD, "");
+        ret.put(Article.ARTICLE_VIEW_PWD, parseViewPwd(elems, logger));
 
         return ret;
+    }
+
+    /**
+     * 解析文件头中的 id 字段。
+     * @param map
+     * @param logger
+     * @return
+     */
+    private static String parseId(final Map map, Logger logger) {
+        String id = "";
+
+        if(null == map.get("id")) {
+            id = null;
+        }
+        else if(map.get("id") instanceof Integer) {
+            id = (Integer) map.get("id") + "";
+        }
+        else {
+            id = (String) map.get("id");
+        }
+
+        return id;
+    }
+
+    /**
+     * 解析文件头中的 pwd 或 password 字段。
+     * @param map
+     * @param logger
+     * @return
+     */
+    private static String parseViewPwd(final Map map, Logger logger) {
+        String ret = null == map.get("pwd") ? null : map.get("pwd").toString();
+
+        if(StringUtils.isNotEmpty(ret)) {
+            return ret;
+        }
+
+        ret = null == map.get("password") ? null : map.get("password").toString();
+
+        if(StringUtils.isNotEmpty(ret)) {
+            return ret;
+        }
+
+        return "";
     }
 
     private static String parseAbstract(final Map map, final String content, Logger logger) {
@@ -158,7 +192,11 @@ public class Utils {
             return ret;
         }
 
-        return Article.getAbstractText(content);
+        if(StringUtils.isEmpty((String) map.get("pwd"))) {
+            return Article.getAbstractText(content);
+        }
+
+        return "";
     }
 
     private static Date parseDate(final Map map, Logger logger) {

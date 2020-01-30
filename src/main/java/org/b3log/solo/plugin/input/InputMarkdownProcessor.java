@@ -86,6 +86,13 @@ public class InputMarkdownProcessor {
         context.renderJSON(result);
         JSONObject obj = context.requestJSON();
         FileUpload fileUpload = context.getRequest().getFileUpload("file");
+
+        if(null == fileUpload) {
+            LOGGER.error("上传的文件内容为空");
+            result.put(Keys.CODE, -1);
+            result.put(Keys.MSG, "上传的文件内容为空");
+        }
+
         byte[] contentBytes = fileUpload.getData();
 
         // final String markdownText = context.requestJSON().optString("markdownText");

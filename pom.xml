@@ -328,7 +328,7 @@
                 </configuration>
             </plugin>
 
-            <!-- 运行时打Jar的话，解放这段配置，并将后面的那段配置注释掉
+            <!-- 运行时打Jar的话，解放这段配置，并将后面的那段配置注释掉 -->
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
@@ -345,10 +345,10 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin> -->
+            </plugin>
 
             <!-- 需要打 jar 部署的话注释掉上面的配置，启用下面这段配置-->
-            <plugin>
+            <!--<plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
                     <appendAssemblyId>false</appendAssemblyId>
@@ -370,7 +370,7 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
+            </plugin>-->
 
 
         </plugins>

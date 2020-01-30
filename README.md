@@ -1,6 +1,10 @@
 ## 特殊之处
 ### Markdown文章更新插件
-- ID需要完全有 **数字** 组成，否则拼接 *permalink* 时会报错。
+- 文件头中的 `id` 可以设置文章的ID，对应 `oid` 。
+  - ID需要完全有 **数字** 组成，否则拼接 *permalink* 时会报错。
+- 文件头中的 `pwd` 、 `password` 可以设置文章的查看密码，对应 `articleViewPwd` 。
+  - 一旦 *密码* 非空，且摘要为空，那么 *解析逻辑* 不会自动生成摘要。
+- 文件头中的 `description` 、 `summary` 、 `abstract` 。
 
 ## 相关链接
 * [B3log 构思 - 分布式社区网络](https://hacpai.com/article/1546941897596)
