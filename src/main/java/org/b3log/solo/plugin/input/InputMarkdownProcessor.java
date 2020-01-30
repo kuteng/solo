@@ -115,7 +115,7 @@ public class InputMarkdownProcessor {
         catch (final Exception e) {
             LOGGER.log(Level.ERROR, e.getMessage(), e);
             result.put(Keys.CODE, -1);
-            result.put(Keys.MSG, "出错了");
+            result.put(Keys.MSG, e.getMessage());
         }
     }
 
