@@ -129,7 +129,7 @@ public class Utils {
         tagBuilder.deleteCharAt(tagBuilder.length() - 1);
         ret.put(Article.ARTICLE_TAGS_REF, tagBuilder.toString());
 
-        ret.put(Article.ARTICLE_STATUS, Article.ARTICLE_STATUS_C_PUBLISHED);
+        ret.put(Article.ARTICLE_STATUS, parseArticleStatus(elems, logger));
         ret.put(Article.ARTICLE_COMMENTABLE, true);
         ret.put(Article.ARTICLE_VIEW_PWD, parseViewPwd(elems, logger));
 
@@ -182,6 +182,7 @@ public class Utils {
 
     private static String parseAbstract(final Map map, final String content, Logger logger) {
         String ret = (String) map.get("description");
+
         if (null == ret) {
             ret = (String) map.get("summary");
         }
@@ -261,5 +262,23 @@ public class Utils {
         ret.addAll(tagSet);
 
         return ret;
+    }
+
+    /**
+     * 解析文章状态。
+     * @param map
+     * @param logger
+     * @return
+     */
+    private static int parseArticleStatus(final Map map, Logger logger) {
+        if(null != map.get("status")) {
+            String ret = (String) map.get("status");
+
+            if(!StringUtils.isEmpty(ret) && "draft".equals(ret)) {
+                return Article.ARTICLE_STATUS_C_DRAFT;
+            }
+        }
+
+        return Article.ARTICLE_STATUS_C_PUBLISHED;
     }
 }
