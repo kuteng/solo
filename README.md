@@ -7,4 +7,4 @@
 - 文件头中的 `description` 、 `summary` 、 `abstract` 表示摘要内容。
 - 文章头中的 `status` 表示文章状态，其中 `draft` 表示草稿、 `published` 表示可发布，默认为 `published` 。
 
-## [Solo官方内容](solo)
+## [Solo官方内容](solo.md)
