@@ -375,6 +375,19 @@ button:hover,.button:hover {
     font-weight: bold;
 }
 
+.vditor-reset ul > li {
+    margin-left: 2em;
+}
+
+.vditor-reset ul {
+    padding-left: 0em;
+}
+
+.vditor-reset ul > li.task-list-item {
+    list-style: none;
+    margin-left: 0px;
+}
+
 #tags .tags5 {
     font-size: 20px;
     font-weight: bold;
