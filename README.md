@@ -16,3 +16,6 @@
 - Markdown导入插件的请求支持身份验证。
 
 ## [Solo官方内容](solo.md)
+
+## 其他
+- 许可证的官方内容在[这里](http://www.gnu.org/licenses/agpl-3.0.en.html)
